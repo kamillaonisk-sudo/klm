@@ -17,8 +17,14 @@ export interface StrategicReport {
 
 export type ReportType = 'TREND_ANALYSIS' | 'AGENCY_COACHING' | 'CREATIVE_HARVESTING' | 'FLEXIBILITY_DIALOGUE';
 
+const getApiKey = () => {
+  const customKey = typeof window !== 'undefined' ? localStorage.getItem('KLM_CUSTOM_API_KEY') : null;
+  return customKey || process.env.GEMINI_API_KEY;
+};
+
 export async function checkBrandCompliance(content: string): Promise<ComplianceResult> {
-  const response = await ai.models.generateContent({
+  const aiClient = new GoogleGenAI({ apiKey: getApiKey() || '' });
+  const response = await aiClient.models.generateContent({
     model: "gemini-3-flash-preview",
     contents: `Analyze the following marketing content for compliance with KLM brand guidelines. 
     KLM Brand Guidelines Summary:
@@ -59,6 +65,7 @@ export async function checkBrandCompliance(content: string): Promise<ComplianceR
 }
 
 export async function generateStrategicReport(reportType: ReportType): Promise<StrategicReport> {
+  const aiClient = new GoogleGenAI({ apiKey: getApiKey() || '' });
   const prompts = {
     TREND_ANALYSIS: "Summarize the most common brand mistakes made by agencies based on historical audit data (75% violations are logo clear space issues).",
     AGENCY_COACHING: "Identify regions or agencies struggling with brand compliance and suggest educational interventions.",
@@ -66,7 +73,7 @@ export async function generateStrategicReport(reportType: ReportType): Promise<S
     FLEXIBILITY_DIALOGUE: "Analyze 'pain points' where agencies frequently request flexibility (e.g., contrast issues in high-brightness Asian markets)."
   };
 
-  const response = await ai.models.generateContent({
+  const response = await aiClient.models.generateContent({
     model: "gemini-3-flash-preview",
     contents: `You are the KLM AI Brand Strategist. Generate a strategic report for: ${prompts[reportType]}. 
     Context: You are speaking to the Global Brand Director of KLM.`,

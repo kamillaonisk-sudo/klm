@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Lock, ShieldAlert, CheckSquare, BarChart3, MessageSquarePlus, Key, Eye, EyeOff } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Lock, ShieldAlert, CheckSquare, BarChart3, MessageSquarePlus, Key, Eye, EyeOff, Settings, Save } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 import AIBrainAssistant from './AIBrainAssistant';
@@ -20,6 +20,20 @@ export default function AdminVault() {
       setError(true);
       setTimeout(() => setError(false), 2000);
     }
+  };
+
+  const [apiKey, setApiKey] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    const savedKey = localStorage.getItem('KLM_CUSTOM_API_KEY');
+    if (savedKey) setApiKey(savedKey);
+  }, []);
+
+  const handleSaveApiKey = () => {
+    setIsSaving(true);
+    localStorage.setItem('KLM_CUSTOM_API_KEY', apiKey);
+    setTimeout(() => setIsSaving(false), 800);
   };
 
   if (!isAuthenticated) {
@@ -161,6 +175,59 @@ export default function AdminVault() {
                    date="Yesterday"
                    approved
                 />
+             </div>
+          </div>
+        </div>
+
+        {/* Section 4: System Configuration */}
+        <div className="col-span-12 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+          <div className="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+             <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center">
+                  <Settings className="w-5 h-5" />
+                </div>
+                <h3 className="text-sm font-bold text-slate-800 tracking-tight">System Configuration</h3>
+             </div>
+          </div>
+          <div className="p-6">
+             <div className="max-w-2xl space-y-4">
+                <div>
+                   <label className="text-[10px] uppercase font-bold text-slate-400 tracking-widest block mb-2 px-1">Gemini API Key Override</label>
+                   <div className="flex gap-3">
+                      <div className="flex-1 relative">
+                         <input 
+                            type="password"
+                            value={apiKey}
+                            onChange={(e) => setApiKey(e.target.value)}
+                            placeholder="Enter custom API key..."
+                            className="w-full pl-4 pr-10 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-[#00A1DE]/10 transition-all font-mono text-sm"
+                         />
+                         <Key className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300" />
+                      </div>
+                      <button 
+                         onClick={handleSaveApiKey}
+                         disabled={isSaving}
+                         className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all flex items-center gap-2 ${
+                            isSaving ? 'bg-emerald-500 text-white' : 'bg-slate-900 text-white hover:bg-slate-800'
+                         }`}
+                      >
+                         {isSaving ? (
+                            <>
+                               <CheckSquare className="w-4 h-4" />
+                               Saved
+                            </>
+                         ) : (
+                            <>
+                               <Save className="w-4 h-4" />
+                               Save Key
+                            </>
+                         )}
+                      </button>
+                   </div>
+                   <p className="text-[10px] text-slate-400 mt-2 px-1 italic">
+                      This key is stored locally in your browser and overrides the system default for this session. Use this for testing or restricted audit access.
+                   </p>
+                </div>
              </div>
           </div>
         </div>
