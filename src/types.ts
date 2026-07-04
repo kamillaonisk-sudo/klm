@@ -1,33 +1,45 @@
-export type ViewType = 'DASHBOARD' | 'CAMPAIGNS' | 'GUIDELINES' | 'AUDIT' | 'ADMIN_VAULT';
+export interface Word {
+  fr: string;
+  ru: string;
+  phonetic?: string;
+  example?: string;
+  exampleRu?: string;
+}
 
-export type UserRole = 'BRAND_DIRECTOR' | 'REGIONAL_MANAGER';
+export interface DialogLine {
+  speaker: string;
+  fr: string;
+  ru: string;
+}
 
-export type WorkflowStage = 'DRAFT' | 'REGIONAL_REVIEW' | 'DIRECTOR_SIGN_OFF' | 'PUBLISHED';
+export interface Chapter {
+  id: number;
+  title: string;
+  titleRu: string;
+  description: string;
+  available: boolean;
+}
 
-export interface Campaign {
+export interface FlashCard {
   id: string;
-  name: string;
-  region: string;
-  stage: WorkflowStage;
-  owner: string;
-  deadline: string;
-  violations?: string[];
+  fr: string;
+  ru: string;
+  interval: number;
+  repetition: number;
+  easeFactor: number;
+  nextReview: number;
 }
 
-export interface AuditEvent {
-  id: string;
-  timestamp: string;
-  user: string;
-  role: UserRole;
-  region: string;
-  action: string;
-  asset: string;
-  status: 'SUCCESS' | 'FLAGGED' | 'PENDING';
+export interface StudySession {
+  date: string;
+  minutes: number;
 }
 
-export interface BrandGuideline {
-  version: string;
-  publishedAt: string;
-  mandatory: boolean;
-  content: string;
+export interface AppState {
+  completedChapters: number[];
+  flashcards: FlashCard[];
+  sessions: StudySession[];
+  currentChapter: number;
 }
+
+export type Page = 'home' | 'chapter' | 'flashcards' | 'songs' | 'progress';
