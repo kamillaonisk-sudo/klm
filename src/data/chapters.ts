@@ -1,0 +1,291 @@
+import type { Chapter, Word, DialogLine } from '../types';
+
+export const chapters: Chapter[] = [
+  {
+    id: 1,
+    title: 'Chapitre 1 : Premiers pas',
+    titleRu: 'Глава 1: Первые шаги',
+    description: 'Алфавит, звуки, знакомство',
+    available: true,
+  },
+  {
+    id: 2,
+    title: 'Chapitre 2 : Au café',
+    titleRu: 'Глава 2: В кафе',
+    description: 'Заказ еды, числа 1-20, артикли',
+    available: false,
+  },
+  {
+    id: 3,
+    title: 'Chapitre 3 : Ma famille',
+    titleRu: 'Глава 3: Моя семья',
+    description: 'Семья, притяжательные прилагательные, être/avoir',
+    available: false,
+  },
+  {
+    id: 4,
+    title: 'Chapitre 4 : En ville',
+    titleRu: 'Глава 4: В городе',
+    description: 'Город, направления, предлоги места',
+    available: false,
+  },
+  {
+    id: 5,
+    title: 'Chapitre 5 : Ma journée',
+    titleRu: 'Глава 5: Мой день',
+    description: 'Распорядок дня, возвратные глаголы, время',
+    available: false,
+  },
+  {
+    id: 6,
+    title: 'Chapitre 6 : Les courses',
+    titleRu: 'Глава 6: Покупки',
+    description: 'Магазин, одежда, цвета, числа до 100',
+    available: false,
+  },
+  {
+    id: 7,
+    title: 'Chapitre 7 : Loisirs',
+    titleRu: 'Глава 7: Хобби и досуг',
+    description: 'Спорт, музыка, глагол faire/jouer',
+    available: false,
+  },
+  {
+    id: 8,
+    title: 'Chapitre 8 : Révision A1',
+    titleRu: 'Глава 8: Повторение A1',
+    description: 'Итоговое повторение и мини-экзамен',
+    available: false,
+  },
+];
+
+export const alphabet: { letter: string; sound: string; example: string; exampleRu: string }[] = [
+  { letter: 'A a', sound: '[а]', example: 'ami — друг', exampleRu: 'ами' },
+  { letter: 'B b', sound: '[бэ]', example: 'bon — хороший', exampleRu: 'бон' },
+  { letter: 'C c', sound: '[сэ]', example: 'café — кафе', exampleRu: 'кафэ' },
+  { letter: 'D d', sound: '[дэ]', example: 'dame — дама', exampleRu: 'дам' },
+  { letter: 'E e', sound: '[ё] (нечёткое)', example: 'le — артикль', exampleRu: 'лё' },
+  { letter: 'F f', sound: '[эф]', example: 'fête — праздник', exampleRu: 'фэт' },
+  { letter: 'G g', sound: '[жэ]', example: 'garçon — мальчик', exampleRu: 'гарсон' },
+  { letter: 'H h', sound: '[аш] (не читается!)', example: 'hôtel — отель', exampleRu: 'отэль' },
+  { letter: 'I i', sound: '[и]', example: 'ici — здесь', exampleRu: 'иси' },
+  { letter: 'J j', sound: '[жи]', example: 'jour — день', exampleRu: 'жур' },
+  { letter: 'K k', sound: '[ка]', example: 'kilo — килограмм', exampleRu: 'кило' },
+  { letter: 'L l', sound: '[эль]', example: 'lune — луна', exampleRu: 'люн' },
+  { letter: 'M m', sound: '[эм]', example: 'mer — море', exampleRu: 'мэр' },
+  { letter: 'N n', sound: '[эн]', example: 'non — нет', exampleRu: 'нон' },
+  { letter: 'O o', sound: '[о]', example: 'or — золото', exampleRu: 'ор' },
+  { letter: 'P p', sound: '[пэ]', example: 'pain — хлеб', exampleRu: 'пэн' },
+  { letter: 'Q q', sound: '[кю]', example: 'quatre — четыре', exampleRu: 'катр' },
+  { letter: 'R r', sound: '[эр] (горловой!)', example: 'rue — улица', exampleRu: 'рю' },
+  { letter: 'S s', sound: '[эс]', example: 'soleil — солнце', exampleRu: 'солэй' },
+  { letter: 'T t', sound: '[тэ]', example: 'table — стол', exampleRu: 'табль' },
+  { letter: 'U u', sound: '[ю] (губы трубочкой!)', example: 'une — одна', exampleRu: 'юн' },
+  { letter: 'V v', sound: '[вэ]', example: 'vin — вино', exampleRu: 'вэн' },
+  { letter: 'W w', sound: '[дубль-вэ]', example: 'wagon — вагон', exampleRu: 'вагон' },
+  { letter: 'X x', sound: '[икс]', example: 'exemple — пример', exampleRu: 'эгзампль' },
+  { letter: 'Y y', sound: '[игрэк]', example: 'yeux — глаза', exampleRu: 'йё' },
+  { letter: 'Z z', sound: '[зэд]', example: 'zoo — зоопарк', exampleRu: 'зо' },
+];
+
+export const specialSounds: { sound: string; description: string; examples: { fr: string; ru: string }[] }[] = [
+  {
+    sound: 'Звук [y] — u',
+    description: 'Нет в русском! Губы как для «у», а язык как для «и». Не путайте с ou [u]!',
+    examples: [
+      { fr: 'tu', ru: 'ты' },
+      { fr: 'une', ru: 'одна' },
+      { fr: 'rue', ru: 'улица' },
+      { fr: 'salut', ru: 'привет' },
+    ],
+  },
+  {
+    sound: 'Звук [u] — ou',
+    description: 'Обычное русское «у». Важно отличать от u [y] выше!',
+    examples: [
+      { fr: 'vous', ru: 'вы' },
+      { fr: 'nous', ru: 'мы' },
+      { fr: 'bonjour', ru: 'здравствуйте' },
+      { fr: 'toujours', ru: 'всегда' },
+    ],
+  },
+  {
+    sound: 'Закрытое [e] — é',
+    description: 'Чёткое «э», без «й» в конце. Рот чуть уже, чем для русского «э».',
+    examples: [
+      { fr: 'café', ru: 'кафе' },
+      { fr: 'école', ru: 'школа' },
+      { fr: 'enchanté', ru: 'приятно познакомиться' },
+      { fr: 'répétez', ru: 'повторите' },
+    ],
+  },
+  {
+    sound: 'Открытое [ɛ] — è, ê',
+    description: 'Широкое «э», как в русском «мэр». Рот открыт шире, чем для é.',
+    examples: [
+      { fr: 'mère', ru: 'мать' },
+      { fr: 'tête', ru: 'голова' },
+      { fr: 'très', ru: 'очень' },
+      { fr: 'fête', ru: 'праздник' },
+    ],
+  },
+  {
+    sound: 'Звуки [ø]/[œ] — eu, œu',
+    description: 'Губы трубочкой, звук между «э» и «о». Нет в русском!',
+    examples: [
+      { fr: 'peu', ru: 'мало' },
+      { fr: 'deux', ru: 'два' },
+      { fr: 'sœur', ru: 'сестра' },
+      { fr: 'cœur', ru: 'сердце' },
+    ],
+  },
+  {
+    sound: 'Увулярное [ʁ] — r',
+    description: 'Картавое r из глубины горла, не кончиком языка! Представьте мягкое полоскание.',
+    examples: [
+      { fr: 'Paris', ru: 'Париж' },
+      { fr: 'merci', ru: 'спасибо' },
+      { fr: 'rouge', ru: 'красный' },
+      { fr: 'trois', ru: 'три' },
+    ],
+  },
+  {
+    sound: 'Назальное [ɑ̃] — an, am, en, em',
+    description: 'Произносите «а», но воздух идёт через нос. Букву n/m отдельно не произносите!',
+    examples: [
+      { fr: 'France', ru: 'Франция' },
+      { fr: 'temps', ru: 'время' },
+      { fr: 'enfant', ru: 'ребёнок' },
+      { fr: 'comment', ru: 'как' },
+    ],
+  },
+  {
+    sound: 'Назальное [ɔ̃] — on, om',
+    description: 'Произносите «о», но воздух через нос.',
+    examples: [
+      { fr: 'bon', ru: 'хороший' },
+      { fr: 'nom', ru: 'имя' },
+      { fr: 'maison', ru: 'дом' },
+      { fr: 'bonjour', ru: 'здравствуйте' },
+    ],
+  },
+  {
+    sound: 'Назальное [ɛ̃] — in, im, ain, ein',
+    description: 'Произносите «э», но воздух через нос.',
+    examples: [
+      { fr: 'vin', ru: 'вино' },
+      { fr: 'pain', ru: 'хлеб' },
+      { fr: 'jardin', ru: 'сад' },
+      { fr: 'demain', ru: 'завтра' },
+    ],
+  },
+  {
+    sound: 'Назальное [œ̃] — un, um',
+    description: 'Как [ɛ̃], но губы чуть округлены. Сливается с [ɛ̃] в современном французском.',
+    examples: [
+      { fr: 'un', ru: 'один' },
+      { fr: 'parfum', ru: 'духи' },
+      { fr: 'lundi', ru: 'понедельник' },
+      { fr: 'brun', ru: 'коричневый' },
+    ],
+  },
+  {
+    sound: 'Liaison (связывание)',
+    description: 'Конечная согласная (обычно немая) произносится перед гласной или h следующего слова. Правило: согласная на конце + гласная в начале = связь.',
+    examples: [
+      { fr: 'vous avez', ru: '«вузавэ» — z связывает' },
+      { fr: 'nous habitons', ru: '«нузабитон» — z связывает' },
+      { fr: 'c\'est un ami', ru: '«сэтёнами» — t и n связывают' },
+      { fr: 'les amis', ru: '«лезами» — z связывает' },
+    ],
+  },
+];
+
+export const chapter1Words: Word[] = [
+  { fr: 'Bonjour', ru: 'Здравствуйте / Добрый день', phonetic: 'бонжур' },
+  { fr: 'Salut', ru: 'Привет (неформально)', phonetic: 'салю' },
+  { fr: 'Bonsoir', ru: 'Добрый вечер', phonetic: 'бонсуар' },
+  { fr: 'Au revoir', ru: 'До свидания', phonetic: 'о рёвуар' },
+  { fr: 'Merci', ru: 'Спасибо', phonetic: 'мэрси' },
+  { fr: 'Merci beaucoup', ru: 'Большое спасибо', phonetic: 'мэрси боку' },
+  { fr: 'S\'il vous plaît', ru: 'Пожалуйста (вежливо)', phonetic: 'силь ву плэ' },
+  { fr: 'De rien', ru: 'Не за что', phonetic: 'дё рьен' },
+  { fr: 'Comment ça va ?', ru: 'Как дела?', phonetic: 'коман са ва' },
+  { fr: 'Ça va bien', ru: 'Дела хорошо', phonetic: 'са ва бьен' },
+  { fr: 'Je m\'appelle...', ru: 'Меня зовут...', phonetic: 'жё мапэль' },
+  { fr: 'Comment tu t\'appelles ?', ru: 'Как тебя зовут?', phonetic: 'коман тю тапэль' },
+  { fr: 'Enchanté(e)', ru: 'Приятно познакомиться', phonetic: 'аншантэ' },
+  { fr: 'Je suis...', ru: 'Я (есть)...', phonetic: 'жё сюи' },
+  { fr: 'Tu es... / Vous êtes...', ru: 'Ты / Вы (есть)...', phonetic: 'тю э / вузэт' },
+  { fr: 'Oui', ru: 'Да', phonetic: 'уи' },
+  { fr: 'Non', ru: 'Нет', phonetic: 'нон' },
+  { fr: 'Peut-être', ru: 'Может быть', phonetic: 'пётэтр' },
+  { fr: 'Je ne comprends pas', ru: 'Я не понимаю', phonetic: 'жё нё компран па' },
+  { fr: 'Pouvez-vous répéter ?', ru: 'Можете повторить?', phonetic: 'пувэ ву рэпэтэ' },
+  { fr: 'J\'habite à...', ru: 'Я живу в...', phonetic: 'жабит а' },
+  { fr: 'D\'où viens-tu ?', ru: 'Откуда ты?', phonetic: 'ду вьен тю' },
+  { fr: 'Je viens de Russie', ru: 'Я из России', phonetic: 'жё вьен дё рюси' },
+  { fr: 'À bientôt', ru: 'До скорого', phonetic: 'а бьенто' },
+  { fr: 'Bonne journée', ru: 'Хорошего дня', phonetic: 'бон журнэ' },
+];
+
+export type CardDeck = 'pronunciation' | 'words' | 'phrases';
+
+export const cardDecks: { key: CardDeck; label: string; description: string }[] = [
+  { key: 'pronunciation', label: 'Звуки', description: 'Послушать и повторить' },
+  { key: 'words', label: 'Слова знакомства', description: '15 ключевых слов' },
+  { key: 'phrases', label: 'Фразы из диалога', description: '10 разговорных фраз' },
+];
+
+export const deckCards: Record<CardDeck, { fr: string; ru: string }[]> = {
+  pronunciation: [
+    { fr: 'tu', ru: '[y] — губы «у», язык «и»' },
+    { fr: 'vous', ru: '[u] — обычное русское «у»' },
+    { fr: 'café', ru: '[e] — закрытое, чёткое «э»' },
+    { fr: 'mère', ru: '[ɛ] — открытое, широкое «э»' },
+    { fr: 'peu', ru: '[ø] — губы трубочкой, между «э» и «о»' },
+  ],
+  words: [
+    { fr: 'Bonjour', ru: 'Здравствуйте' },
+    { fr: 'Salut', ru: 'Привет' },
+    { fr: 'Au revoir', ru: 'До свидания' },
+    { fr: 'Merci', ru: 'Спасибо' },
+    { fr: 'S\'il vous plaît', ru: 'Пожалуйста' },
+    { fr: 'De rien', ru: 'Не за что' },
+    { fr: 'Oui', ru: 'Да' },
+    { fr: 'Non', ru: 'Нет' },
+    { fr: 'Peut-être', ru: 'Может быть' },
+    { fr: 'Bonsoir', ru: 'Добрый вечер' },
+    { fr: 'Pardon', ru: 'Простите' },
+    { fr: 'Enchanté', ru: 'Приятно познакомиться' },
+    { fr: 'Bonne journée', ru: 'Хорошего дня' },
+    { fr: 'À bientôt', ru: 'До скорого' },
+    { fr: 'Merci beaucoup', ru: 'Большое спасибо' },
+  ],
+  phrases: [
+    { fr: 'Comment tu t\'appelles ?', ru: 'Как тебя зовут?' },
+    { fr: 'Je m\'appelle...', ru: 'Меня зовут...' },
+    { fr: 'Comment ça va ?', ru: 'Как дела?' },
+    { fr: 'Ça va bien', ru: 'Дела хорошо' },
+    { fr: 'Je ne comprends pas', ru: 'Я не понимаю' },
+    { fr: 'Pouvez-vous répéter ?', ru: 'Можете повторить?' },
+    { fr: 'J\'habite à...', ru: 'Я живу в...' },
+    { fr: 'D\'où viens-tu ?', ru: 'Откуда ты?' },
+    { fr: 'Je viens de Russie', ru: 'Я из России' },
+    { fr: 'Je suis...', ru: 'Я (есть)...' },
+  ],
+};
+
+export const chapter1Dialog: DialogLine[] = [
+  { speaker: 'A', fr: 'Salut ! Comment tu t\'appelles ?', ru: 'Привет! Как тебя зовут?' },
+  { speaker: 'B', fr: 'Je m\'appelle [ton nom]. Et toi ?', ru: 'Меня зовут [твоё имя]. А тебя?' },
+  { speaker: 'A', fr: 'Moi, c\'est [nom]. Enchanté !', ru: 'А я [имя]. Приятно познакомиться!' },
+  { speaker: 'B', fr: 'Enchantée ! Comment ça va ?', ru: 'Очень приятно! Как дела?' },
+  { speaker: 'A', fr: 'Ça va bien, merci. Et toi ?', ru: 'Хорошо, спасибо. А у тебя?' },
+  { speaker: 'B', fr: 'Ça va ! Tu habites où ?', ru: 'Нормально! Ты где живёшь?' },
+  { speaker: 'A', fr: 'J\'habite à [ville].', ru: 'Я живу в [город].' },
+  { speaker: 'B', fr: 'D\'où viens-tu ?', ru: 'Откуда ты?' },
+  { speaker: 'A', fr: 'Je viens de Russie.', ru: 'Я из России.' },
+  { speaker: 'B', fr: 'Super ! À bientôt !', ru: 'Отлично! До скорого!' },
+  { speaker: 'A', fr: 'À bientôt !', ru: 'До скорого!' },
+];
